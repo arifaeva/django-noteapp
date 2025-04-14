@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Edit Note</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <input name="title" placeholder="Input title" value="{{ note.title }}"/>
+        <textarea name="content" placeholder="Input content">{{ note.content }}</textarea>
+        <button>Edit Note</button>
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    </form>
+  </body>
+</html>

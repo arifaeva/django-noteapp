@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet" />
+  </head>
+  <body class="bg-[#f7f5f4] text-[#1e1c1a]">
+    <section class="h-screen flex items-center justify-center">
+      <form method="post" class="bg-white p-8 space-y-3 w-sm shadow-sm">
+        {% csrf_token %}
+        <div>
+          <h1 class="font-semibold text-2xl pb-1">Welcome to Note App!</h1>
+          <p class="leading-snug text-sm">
+            Stay organized, never lose a thought, and access your notes anytime,
+            anywhere.
+          </p>
+        </div>
+        <input
+          name="username"
+          placeholder="Username"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        />
+        <input
+          name="email"
+          placeholder="Email"
+          type="email"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        />
+        <input
+          name="password"
+          placeholder="Password"
+          type="password"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        />
+        <div>
+          <button
+            class="cursor-pointer bg-[#1e1c1a] text-white transition-colors duration-200 p-1.5 block w-full font-semibold"
+          >
+            Sign Up
+          </button>
+          <h1 class="text-center pt-0.5 text-sm">
+            Already have an account?
+            <a href="{% url 'login' %}" class="font-semibold underline"
+              >Sign in here</a
+            >
+          </h1>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

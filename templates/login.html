@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet" />
+  </head>
+  <body class="bg-[#f7f5f4] text-[#1e1c1a]">
+    <section class="h-screen flex items-center justify-center">
+      <form method="post" class="bg-white p-8 space-y-3 w-sm shadow-sm">
+        {% csrf_token %}
+        <div>
+          <h1 class="font-semibold text-2xl pb-1">Welcome back!</h1>
+          <p class="leading-snug text-sm">Your ideas are waiting.</p>
+        </div>
+        <input
+          name="username"
+          placeholder="Username"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        />
+        <input
+          name="password"
+          placeholder="Password"
+          type="password"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        />
+        <div>
+          <button
+            class="cursor-pointer bg-[#1e1c1a] text-white transition-colors duration-200 p-1.5 block w-full font-semibold"
+          >
+            Login
+          </button>
+          <h1 class="text-center pt-0.5 text-sm">
+            Don't have an account?
+            <a href="{% url 'register' %}" class="font-semibold underline"
+              >Sign up here</a
+            >
+          </h1>
+        </div>
+      </form>
+
+      {% for message in messages %}
+      <div>{{ message }}</div>
+      {% endfor %}
+    </section>
+  </body>
+</html>

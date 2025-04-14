@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>My Notes</h1>
+
+    <form method="post">
+      {% csrf_token %}
+        <input name="title" placeholder="Input title" required />
+        <textarea name="content" placeholder="Input content" required></textarea>
+        <button>Create New Note</button>
+      {% for message in messages %}
+        <div>{{ message }}</div>
+      {% endfor %}
+    </form>
+
+    <div>
+      {% for note in notes %}
+      <a href="{% url 'detail-view' note.id %}">{{ note.title }}</a>
+      {% endfor %}
+    </div>
+  </body>
+</html>

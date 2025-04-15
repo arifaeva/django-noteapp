@@ -28,12 +28,16 @@
           required
           class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
         />
+        {% for message in messages %}
+        <div class="text-sm text-red-500 text-center">{{ message }}</div>
+        {% endfor %}
         <div>
           <button
             class="cursor-pointer bg-[#1e1c1a] text-white transition-colors duration-200 p-1.5 block w-full font-semibold"
           >
             Login
           </button>
+
           <h1 class="text-center pt-0.5 text-sm">
             Don't have an account?
             <a href="{% url 'register' %}" class="font-semibold underline"
@@ -42,10 +46,6 @@
           </h1>
         </div>
       </form>
-
-      {% for message in messages %}
-      <div>{{ message }}</div>
-      {% endfor %}
     </section>
   </body>
 </html>

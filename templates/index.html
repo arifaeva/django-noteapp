@@ -4,26 +4,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
+    <title>My Notes</title>
     <link href="{% static 'output.css' %}" rel="stylesheet" />
   </head>
-  <body>
-    <h1>My Notes</h1>
-
-    <form method="post">
-      {% csrf_token %}
-        <input name="title" placeholder="Input title" required />
-        <textarea name="content" placeholder="Input content" required></textarea>
-        <button>Create New Note</button>
-      {% for message in messages %}
+  <body class="bg-[#f7f5f4] text-[#1e1c1a]">
+    <header class="bg-[#1e1c1a] p-4 flex justify-between items-center">
+      <div class="text-xl text-white font-semibold">
+        Hello, {{ user.username }}!
+      </div>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="font-semibold text-white cursor-pointer">
+          Sign Out
+        </button>
+      </form>
+    </header>
+    <section class="p-10 flex justify-center items-center">
+      <form
+        method="post"
+        class="max-w-5xl bg-white p-8 space-y-3 w-sm shadow-sm"
+      >
+        {% csrf_token %}
+        <h1 class="font-semibold text-2xl pb-1">Create New Note</h1>
+        <input
+          name="title"
+          placeholder="Input title"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        />
+        <textarea
+          name="content"
+          placeholder="Input content"
+          required
+          class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+        ></textarea>
+        <button
+          class="cursor-pointer bg-[#1e1c1a] text-white transition-colors duration-200 p-1.5 block w-full font-semibold"
+        >
+          Create New Note
+        </button>
+        {% for message in messages %}
         <div>{{ message }}</div>
-      {% endfor %}
-    </form>
+        {% endfor %}
+      </form>
+    </section>
 
-    <div>
-      {% for note in notes %}
-      <a href="{% url 'detail-view' note.id %}">{{ note.title }}</a>
-      {% endfor %}
-    </div>
+    <section class="flex justify-center items-center">
+      <div class="grid grid-cols-3 gap-3 max-w-5xl">
+        {% for note in notes %} 
+        {% include 'components/note-card.html' with note=note %} 
+        {% endfor %}
+      </div>
+    </section>
   </body>
 </html>

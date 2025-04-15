@@ -4,20 +4,93 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
+    <title>Edit Note</title>
     <link href="{% static 'output.css' %}" rel="stylesheet" />
   </head>
-  <body>
-    <h1>Edit Note</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        <input name="title" placeholder="Input title" value="{{ note.title }}"/>
-        <textarea name="content" placeholder="Input content">{{ note.content }}</textarea>
-        <button>Edit Note</button>
-        {% for message in messages %}
-            <div>{{ message }}</div>
-        {% endfor %}
-    </form>
+  <body class="bg-[#f7f5f4]">
+    <section class="p-10 flex justify-center items-center min-h-screen">
+      <div class="flex">
+        <form
+          method="post"
+          class="max-w-5xl bg-white p-8 space-y-3 w-xl shadow-sm"
+        >
+          {% csrf_token %}
+          <h1 class="font-semibold text-2xl pb-1">Edit Note</h1>
+          <input
+            name="title"
+            placeholder="Input title"
+            value="{{ note.title }}"
+            required
+            class="block w-full border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+          />
+          <textarea
+            name="content"
+            placeholder="Input content"
+            required
+            class="block w-full h-36 border border-[#1e1c1a] p-2 outline-o active:bg-white focus:bg-white active:outline-0 active:outline-offset-0 focus:outline-0 focus:outline-offset-0"
+          >
+{{ note.content }}</textarea
+          >
+          <button
+            class="cursor-pointer bg-[#1e1c1a] text-white transition-colors duration-200 py-1.5 px-4 flex w-fit font-semibold place-self-end"
+          >
+            Save Change
+          </button>
+          {% for message in messages %}
+          <div>{{ message }}</div>
+          {% endfor %}
+        </form>
+        <div class="bg-[#d8e2e8] p-4 flex flex-col gap-4">
+          <button class="cursor-pointer">
+            <a href="{% url 'index' %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+              >
+                <path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z" />
+              </svg>
+            </a>
+          </button>
+          <button class="cursor-pointer">
+            <a href="{% url 'detail-view' note.id %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+              >
+                <!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE -->
+                <path
+                  fill="currentColor"
+                  d="M7 22V6.975h15V17l-5 5zm2-2h7v-4h4V9H9zm-4.7-.925L1.675 4.3L16.45 1.675L17.05 5H15l-.175-1L4 5.925l1 5.65v7.375zM14.5 14.5"
+                />
+              </svg>
+            </a>
+          </button>
+          <form
+            method="post"
+            action="{% url 'delete' note.id %}"
+            class="cursor-pointer"
+          >
+            {% csrf_token %}
+            <button class="cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M5 21V6H4V4h5V3h6v1h5v2h-1v15zm2-2h10V6H7zm2-2h2V8H9zm4 0h2V8h-2zM7 6v13z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

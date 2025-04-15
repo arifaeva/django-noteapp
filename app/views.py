@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.views import View
@@ -38,3 +38,9 @@ class LoginView(View):
 
         login(request, authenticate_user)
         return redirect("index")
+
+
+class LogoutView(View):
+    def post(self, request):
+        logout(request)
+        return redirect("login")

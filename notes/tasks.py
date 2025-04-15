@@ -1,5 +1,7 @@
-from .methods import do_something
 from huey.contrib.djhuey import task
+
+from .methods import do_something
+
 
 @task()
 def task_do_something():

@@ -2,9 +2,9 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from .tasks import task_do_something
 
 from .models import Note
+from .tasks import task_do_something
 
 
 class IndexView(LoginRequiredMixin, View):

@@ -1,5 +1,6 @@
 import time
 
+
 def do_something():
     print("Starting to do something...")
     time.sleep(5)
